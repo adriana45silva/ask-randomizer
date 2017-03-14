@@ -1,5 +1,5 @@
 function askReducer (state = {
-   asks: [
+  asks: [
       {
         ask: `Tell me about something you regret having not done. Why haven’t you done it?`,
         read: false
@@ -60,26 +60,54 @@ function askReducer (state = {
         asks: state.asks
       }
     }
+    case "GET_FILTERED_ASK":
+      return function (dispatch) {
+      //   // let foo;
+
+      //   let defer = new Promise((resolve, reject) => {
+      //    state.asks.filter( (index, item) => {
+      //       if (!state.asks[item].read){
+      //         return resolve(!state.asks[item].read);
+      //       }
+      //     })          
+      //   });
+
+      //   defer.then( (data) =>{
+      //     foo = data;
+      //   });
+
+      //   dispatch({
+      //     type: 'FETCH_SINGLE_ASK',
+      //     asks: foo,
+      //     currentQuestion: state.asks[Math.ceil(Math.random() * state.asks.length - 1)]
+      //   });
+
+      //   // return defer;
+      }
+    break;
     case "FETCH_SINGLE_ASK":{
-      let randomAsk = state.asks[Math.floor(Math.random() * state.asks.length)]
       return {
         ...state,
-        asks: state.asks.filter( (index, item) => {
-          if (!state.asks[item].read){
-            return !state.asks[item].read
-          }
-        }),
-        currentQuestion: state.asks[Math.floor(Math.random() * state.asks.length)]
+        asks: action.asks,
+        currentQuestion: action.currentQuestion
+        // asks: state.asks.filter( (index, item) => {
+        //   if (!state.asks[item].read){
+        //     return !state.asks[item].read
+        //   }
+        // }),
+        // currentQuestion: state.asks[Math.ceil(Math.random() * state.asks.length - 1)]
       }
     }
     case "MARK_QUESTION_AS_READED":
       return {
         ...state,
-        readedQuestion: state.currentQuestion.read = true
+        readedQuestion: state.currentQuestion.read = true 
       }
     default:
       return state;
   }
+  
+
 }
 
 export default askReducer;

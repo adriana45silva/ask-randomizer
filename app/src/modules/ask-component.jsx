@@ -2,12 +2,11 @@ import React from 'react';
 import reducer from 'javascripts/reducers/ask-reducer';
 import store from 'javascripts/store/store';
 import AskItem from 'javascripts/modules/ask-item.jsx';
-import {fetchSingleAsk, markQuestionAsReaded} from 'javascripts/actions/ask-actions';
+import {fetchSingleAsk, markQuestionAsReaded, getFilteredAsks} from 'javascripts/actions/ask-actions';
 import { connect } from "react-redux"
 // import asks from "javascripts/asks";
 import { bindActionCreators } from 'redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-import createFragment from 'react-addons-create-fragment' // ES6
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class AskComponent extends React.Component {
@@ -18,10 +17,8 @@ class AskComponent extends React.Component {
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   componentWillMount(){
-    this.props.fetchSingleAsk();
-    this.props.markQuestionAsReaded(); 
-
-    console.log(this.props)
+    this.props.getFilteredAsks();
+    // this.props.markQuestionAsReaded(); 
   }
 
   componentDidMount(){
@@ -30,13 +27,13 @@ class AskComponent extends React.Component {
 
   getQuestions(){
     window.addEventListener('keypress',  () => {
-      this.props.fetchSingleAsk();
-      this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
+      this.props.getFilteredAsks();
+      // this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
     });
 
     window.addEventListener('click',  () => {
-      this.props.fetchSingleAsk();
-      this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
+      this.props.getFilteredAsks();
+      // this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
     });    
   }
 
@@ -85,7 +82,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchSingleAsk: fetchSingleAsk,
-    markQuestionAsReaded: markQuestionAsReaded
+    markQuestionAsReaded: markQuestionAsReaded,
+    getFilteredAsks: getFilteredAsks
   }, dispatch);
 }
 
