@@ -18,23 +18,27 @@ class AskComponent extends React.Component {
 
   componentWillMount(){
     this.props.getFilteredAsks();
-    // this.props.markQuestionAsReaded(); 
+  }
+
+  componentDidUpdate(){ 
   }
 
   componentDidMount(){
     this.getQuestions();
   }
 
-  getQuestions(){
-    window.addEventListener('keypress',  () => {
+  addEvents(){
+    if (this.props.asks.length == 0){
+      document.body.removeEventListener('click', this.addEvents.bind(this), false);
+      document.body.removeEventListener('keypress', this.addEvents.bind(this), false);
+    } else {
       this.props.getFilteredAsks();
-      // this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
-    });
+    }
+  }
 
-    window.addEventListener('click',  () => {
-      this.props.getFilteredAsks();
-      // this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
-    });    
+  getQuestions(){
+    document.body.addEventListener('keypress',  this.addEvents.bind(this));
+    document.body.addEventListener('click',  this.addEvents.bind(this));  
   }
 
   renderQuestions (item){
@@ -48,7 +52,7 @@ class AskComponent extends React.Component {
         transitionLeaveTimeout={500}
       >
       {
-        this.props.currentQuestion && this.props.asks.length > 0 ? <h1 key={this.props.asks.length}>{item}</h1> : <h1 key={this.props.asks.length}>Thanks ;)</h1>
+        this.props.asks.length > 0 ? <h1 key={this.props.asks.length}>{item}</h1> : <h1 key={this.props.asks.length}>Thanks ;)</h1>
       }
       </ReactCSSTransitionGroup>    
     )
@@ -63,7 +67,7 @@ class AskComponent extends React.Component {
     return (
       <div className="ask-container">
         {
-          this.props.currentQuestion ? this.renderQuestions(this.props.currentQuestion.ask) : null
+          this.props.currentQuestion && this.props.asks.length > 0 ? this.renderQuestions(this.props.currentQuestion.ask) : <div><h1 key={this.props.asks.length}>Thanks ;)</h1></div>
         }
       </div>
     );
