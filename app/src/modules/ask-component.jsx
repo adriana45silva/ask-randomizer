@@ -19,7 +19,6 @@ class AskComponent extends React.Component {
   componentWillMount(){
     this.props.fetchSingleAsk();
     this.props.markQuestionAsReaded(); 
-    
   }
 
   componentDidMount(){
@@ -29,12 +28,12 @@ class AskComponent extends React.Component {
   getQuestions(){
     window.addEventListener('keypress',  () => {
       this.props.fetchSingleAsk();
-      this.props.markQuestionAsReaded(); 
+      this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
     });
 
     window.addEventListener('click',  () => {
       this.props.fetchSingleAsk();
-      this.props.markQuestionAsReaded(); 
+      this.props.asks.length > 0 ? this.props.markQuestionAsReaded() : null
     });    
   }
 
@@ -43,7 +42,7 @@ class AskComponent extends React.Component {
   render(){
     return (
       <div className="ask-container">
-        <h1>{this.props.currentQuestion ? this.props.currentQuestion.ask : null}</h1>
+        <h1>{this.props.currentQuestion && this.props.asks.length > 0 ? this.props.currentQuestion.ask : 'Thanks ;)'}</h1>
       </div>
     );
   }
@@ -53,7 +52,8 @@ class AskComponent extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentQuestion: state.askReducer.currentQuestion 
+    currentQuestion: state.askReducer.currentQuestion,
+    asks: state.askReducer.asks
   }
 }
 
