@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --colors --host 0.0.0.0 --port 8000",
     "build-sh": "NODE_ENV=production webpack -p --inline --colors --progress",
-    "build": "bash build.sh"
+    "build": "bash build.sh",
+    "deploy": "git push heroku master"
   },
   "author": "Adriana Silva",
   "license": "ISC",
