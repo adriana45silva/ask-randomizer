@@ -1,0 +1,26 @@
+.ask-enter {
+  opacity: 0.01;
+}
+
+.ask-enter.ask-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.ask-leave {
+  opacity: 1;
+}
+
+.ask-leave.ask-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.ask-appear {
+  opacity: 0.01;
+}
+
+.ask-appear.ask-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}

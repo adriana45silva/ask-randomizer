@@ -6,7 +6,8 @@ import {fetchSingleAsk, markQuestionAsReaded} from 'javascripts/actions/ask-acti
 import { connect } from "react-redux"
 // import asks from "javascripts/asks";
 import { bindActionCreators } from 'redux';
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import createFragment from 'react-addons-create-fragment' // ES6
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 class AskComponent extends React.Component {
@@ -19,6 +20,8 @@ class AskComponent extends React.Component {
   componentWillMount(){
     this.props.fetchSingleAsk();
     this.props.markQuestionAsReaded(); 
+
+    console.log(this.props)
   }
 
   componentDidMount(){
@@ -37,12 +40,34 @@ class AskComponent extends React.Component {
     });    
   }
 
+  renderQuestions (item){
+    return (
+      <ReactCSSTransitionGroup 
+        component="div"
+        transitionName="ask" 
+        transitionEnter={true}
+        transitionAppearTimeout={500}          
+        transitionEnterTimeout={500} 
+        transitionLeaveTimeout={500}
+      >
+      {
+        this.props.currentQuestion && this.props.asks.length > 0 ? <h1 key={this.props.asks.length}>{item}</h1> : <h1 key={this.props.asks.length}>Thanks ;)</h1>
+      }
+      </ReactCSSTransitionGroup>    
+    )
+  }
+
+
+
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   render(){
     return (
       <div className="ask-container">
-        <h1>{this.props.currentQuestion && this.props.asks.length > 0 ? this.props.currentQuestion.ask : 'Thanks ;)'}</h1>
+        {
+          this.props.currentQuestion ? this.renderQuestions(this.props.currentQuestion.ask) : null
+        }
       </div>
     );
   }
