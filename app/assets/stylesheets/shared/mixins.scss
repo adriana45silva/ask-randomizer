@@ -1,0 +1,53 @@
+// ------------------------------------------------------------------
+// Mixins
+// ------------------------------------------------------------------
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  font-size: $min-font-size;
+
+  @include min-screen( mq('breakpoint-mobile') ) {
+    font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+  }
+
+    @include min-screen( mq('breakpoint-wide') ) {
+    font-size: $max-font-size;
+  }
+}
+
+
+@mixin generate-fonts($font, $fs-map){
+  @each $font-key, $font-value in $font {
+    @each $fs-key, $fs-value in $fs-map {
+      .font-#{$font-key}-#{$fs-key} {
+        font-family: $font-value;
+        @include fluid-type(mq('breakpoint-mobile'), mq('breakpoint-wide'), nth($fs-value, 1), nth($fs-value, 2) );
+      }      
+    }
+  }
+}
+
+
+@mixin rem( $prop, $rem ){
+  #{$prop}: rem-unit($rem);
+}
+
+@mixin padding($side, $qtd){
+  @include rem( padding-#{$side}, $qtd  );
+}
+
+@mixin margin($side, $qtd){
+  @include rem( margin-#{$side}, $qtd  );
+}
+
+// ------------------------------------------------------------------
+// Mixins Init
+// ------------------------------------------------------------------
+
+@include generate-fonts($fonts, $font-sizes);
+
+
+
+
+
+
+

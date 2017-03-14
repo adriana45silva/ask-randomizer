@@ -1,0 +1,98 @@
+// ------------------------------------------------------------------
+// Reset Browser Default Styles
+// ------------------------------------------------------------------
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  position: relative;
+  font-size: 62.5%;
+
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.nx-shell {
+  min-height: 100%;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, figure { margin: 0; }
+
+ol, ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+select,
+button,
+textarea,
+input {
+  vertical-align: baseline;
+}
+
+// Fix Android 4.0 button bugs
+input[type="reset"],
+input[type="submit"],
+html input[type="button"],
+button {
+  cursor: pointer;
+  -webkit-appearance: button;
+
+  &[disabled] {
+    cursor: default;
+  }
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+dl, dd { margin: 0; }
+
+
+h1 {
+  @extend .font-helvetica-huge;
+}
+
+
+h2 {
+  @extend .font-helvetica-big;
+  
+}
+
+h3 {
+  @extend .font-helvetica-medium;
+}
+
+h4 {
+  @extend .font-helvetica-regular;
+}
+
+p, label {
+  @extend .font-helvetica-small;
+}

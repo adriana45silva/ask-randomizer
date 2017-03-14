@@ -1,0 +1,20 @@
+// ------------------------------------------------------------------
+// Functions
+// ------------------------------------------------------------------
+
+@function rem-unit($rem){
+  $remSize: $rem / 10;
+  @return #{$remSize}rem; 
+}
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@function mq($breakpoints-value) {
+  @return map-get($breakpoints, $breakpoints-value);
+}
+
+@function grid($grid-value) {
+  @return map-get($grid, $grid-value);
+}
