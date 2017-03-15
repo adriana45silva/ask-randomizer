@@ -20,10 +20,20 @@ class AskComponent extends React.Component {
   }
 
   componentDidUpdate(){ 
+    this.shuffleText()
   }
 
   componentDidMount(){
     this.getQuestions();
+
+    let container = document.querySelector('#ask');
+  }
+
+  shuffleText(){
+    var container = $("#ask");
+    var userText = $('h1');
+
+    container.shuffleLetters();
   }
 
   addEvents(){
@@ -51,12 +61,12 @@ class AskComponent extends React.Component {
         transitionLeaveTimeout={500}
       >
       {
-        this.props.asks.length > 0 ? <h1 key={this.props.asks.length}>{item}</h1> : <h1 key={this.props.asks.length}>Thanks ;)</h1>
+        this.props.asks.length > 0 ? (<h1 key={this.props.asks.length} id="ask">{item}</h1>) : (<h1 key={this.props.asks.length}>Thanks ;)</h1>)
       }
       </ReactCSSTransitionGroup>    
     )
   }
-
+	
 
 
 
