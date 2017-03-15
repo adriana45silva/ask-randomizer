@@ -4,7 +4,6 @@ import store from 'javascripts/store/store';
 import AskItem from 'javascripts/modules/ask-item.jsx';
 import {fetchSingleAsk, markQuestionAsReaded, getFilteredAsks} from 'javascripts/actions/ask-actions';
 import { connect } from "react-redux"
-// import asks from "javascripts/asks";
 import { bindActionCreators } from 'redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
