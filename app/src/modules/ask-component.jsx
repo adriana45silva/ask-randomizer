@@ -25,8 +25,6 @@ class AskComponent extends React.Component {
 
   componentDidMount(){
     this.getQuestions();
-
-    let container = document.querySelector('#ask');
   }
 
   shuffleText(){
