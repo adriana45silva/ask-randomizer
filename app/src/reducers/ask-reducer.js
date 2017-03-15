@@ -60,29 +60,10 @@ function askReducer (state = {
         asks: state.asks
       }
     }
-    case "GET_FILTERED_ASK":
-      return function (dispatch) {
-      //   // let foo;
-
-      //   let defer = new Promise((resolve, reject) => {
-      //    state.asks.filter( (index, item) => {
-      //       if (!state.asks[item].read){
-      //         return resolve(!state.asks[item].read);
-      //       }
-      //     })          
-      //   });
-
-      //   defer.then( (data) =>{
-      //     foo = data;
-      //   });
-
-      //   dispatch({
-      //     type: 'FETCH_SINGLE_ASK',
-      //     asks: foo,
-      //     currentQuestion: state.asks[Math.ceil(Math.random() * state.asks.length - 1)]
-      //   });
-
-      //   // return defer;
+    case "GET_FILTERED_ASK":{
+        return {
+          ...state
+        }
       }
     break;
     case "FETCH_SINGLE_ASK":{
@@ -90,12 +71,6 @@ function askReducer (state = {
         ...state,
         asks: action.asks,
         currentQuestion: action.currentQuestion
-        // asks: state.asks.filter( (index, item) => {
-        //   if (!state.asks[item].read){
-        //     return !state.asks[item].read
-        //   }
-        // }),
-        // currentQuestion: state.asks[Math.ceil(Math.random() * state.asks.length - 1)]
       }
     }
     case "MARK_QUESTION_AS_READED":
